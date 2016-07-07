@@ -50,15 +50,23 @@ console.log("app listening on port 8080");
         });
     });
 
-    // create todo and send back all todos after creation
-    app.post('/api/todos', function(req, res) {
+    //create to do and send back all todos after creation
+app.post('/api/todos', function(req, res) {
 
-    // create a todo, information comes from AJAX request from Angular
+    //create a to do, information comes from AJAX request from Angular
     Todo.create({
         text : req.body.text,
         done : false
     }, function(err, todo) {
         if (err)
             res.send(err);
+
+        // get and return all the todos after you create another
+        Todo.find(function(err, todos) {
+            if (err)
+                res.send(err)
+            res.json(todos);
+        });
+    });
         })
     })
