@@ -32,3 +32,13 @@ var todo = mongoose.model({
 
 app.listen(8080);
 console.log("app listening on port 8080");
+
+//Routes===============================================================================================================
+
+    //api==============================================================================================================
+    //Get all todos
+    app.get('/api/todos', function(req, res) {
+
+        //Use mongoose to get all todos in the database
+
+    })
