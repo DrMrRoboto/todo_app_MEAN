@@ -40,5 +40,25 @@ console.log("app listening on port 8080");
     app.get('/api/todos', function(req, res) {
 
         //Use mongoose to get all todos in the database
+        Todo.find(function(err, todos) {
 
+            // if there is an error retrieving, send the error. Nothing after res.send(err) will ex
+            if (err)
+            res.send(err)
+
+            res.json(todos); // return all todos in JSON format
+        });
+    });
+
+    // create todo and send back all todos after creation
+    app.post('/api/todos', function(req, res) {
+
+    // create a todo, information comes from AJAX request from Angular
+    Todo.create({
+        text : req.body.text,
+        done : false
+    }, function(err, todo) {
+        if (err)
+            res.send(err);
+        })
     })
